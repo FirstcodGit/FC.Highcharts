@@ -1,0 +1,17 @@
+﻿@inject IJSRuntime jSRuntime
+
+<div id="container"></div>
+
+@code {
+
+    [Parameter]
+    public ScatterModel Model { get; set; }
+
+    [Parameter]
+    public Parameters Param { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await jSRuntime.InvokeVoidAsync("ChartContent.scatter", Model.MaleData, Model.FeMaleData, Param.Title, Param.SubTitle);
+    }
+}
